@@ -10,5 +10,6 @@ import { DatabaseModule } from 'src/database/database.module';
   imports: [DatabaseModule, TypeOrmModule.forFeature([User])],
   providers: [UsersService],
   controllers: [UsersController],
+  exports: [UsersService],
 })
 export class UsersModule {}
