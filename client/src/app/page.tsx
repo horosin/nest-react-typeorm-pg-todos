@@ -1,26 +1,34 @@
 import { Link } from "react-router-dom";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { CheckboxIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import Footer from "./_components/Footer";
 
-export default function Page() {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "Review safety guidelines" },
-    { id: 2, text: "Prepapre equipement" },
-    { id: 3, text: "Check instruments" },
-  ]);
-  const [newTask, setNewTask] = useState("");
+import { api, Todo } from "@/api";
 
-  const handleAddTask = (event: FormEvent) => {
+export default function Page() {
+  const [tasks, setTasks] = useState<Todo[]>([]);
+
+  useEffect(() => {
+    api.todos.getAll().then((todos) => {
+      setTasks(todos);
+    });
+  }, []);
+
+  const handleAddTask = async (event: FormEvent) => {
     event.preventDefault();
-    if (newTask.trim() !== "") {
-      setTasks([...tasks, { id: tasks.length + 1, text: newTask }]);
-      setNewTask("");
+
+    const title = (event.target as HTMLFormElement).elements.title.value;
+
+    const addedTask = await api.todos.create(title);
+
+    if (title.trim() !== "") {
+      setTasks([...tasks, addedTask]);
     }
   };
+
   const handleRemoveTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -50,8 +58,7 @@ export default function Page() {
           <Input
             type="text"
             placeholder="Add a new task"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
+            name="title"
             className="flex-1 mr-2 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
           />
           <Button>Add</Button>
@@ -63,7 +70,7 @@ export default function Page() {
               className="flex items-center justify-between rounded-md bg-muted px-3 py-2"
             >
               <div className="flex items-center">
-                <span className="text-sm font-medium">{task.text}</span>
+                <span className="text-sm font-medium">{task.title}</span>
               </div>
               <Button
                 variant="ghost"

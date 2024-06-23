@@ -6,12 +6,12 @@ export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Get()
-  findAll() {
-    return this.todosService.findAll();
+  async findAll() {
+    return await this.todosService.findAll();
   }
 
   @Post()
-  create(@Body('title') title: string) {
-    return this.todosService.create(title);
+  async create(@Body('title') title: string) {
+    return await this.todosService.create(title);
   }
 }
