@@ -1,19 +1,17 @@
-import { Controller, Get, Patch, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { TodosService } from './todos.service';
 
 @Controller('todos')
 export class TodosController {
+  constructor(private readonly todosService: TodosService) {}
+
   @Get()
-  findAll(): string {
-    return 'This action returns all todos';
+  findAll() {
+    return this.todosService.findAll();
   }
 
   @Post()
-  create(): string {
-    return 'This action adds a new todo';
-  }
-
-  @Patch()
-  update(): string {
-    return 'This action updates todo';
+  create(@Body('title') title: string) {
+    return this.todosService.create(title);
   }
 }
