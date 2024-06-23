@@ -22,9 +22,4 @@ export class UsersController {
   async findAll() {
     return this.usersService.findAll();
   }
-
-  @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
 }
