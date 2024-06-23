@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 
 export default function Footer() {
   const [isFulfilled, setIsFulfilled] = useState(false);
@@ -15,7 +16,11 @@ export default function Footer() {
           onClick={() => setIsFulfilled(!isFulfilled)}
           className="cursor-pointer"
         >
-          {isFulfilled ? "♥︎" : "♡"}{" "}
+          {isFulfilled ? (
+            <HeartFilledIcon className="inline w-4 h-4" />
+          ) : (
+            <HeartIcon className="inline w-4 h-4" />
+          )}{" "}
         </span>
         for Pixaera
       </p>
