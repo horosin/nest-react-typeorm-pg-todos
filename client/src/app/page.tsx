@@ -29,8 +29,13 @@ export default function Page() {
     }
   };
 
-  const handleRemoveTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const handleRemoveTask = async (id: number) => {
+    try {
+      await api.todos.remove(id);
+      setTasks(tasks.filter((task) => task.id !== id));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

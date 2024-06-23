@@ -19,4 +19,8 @@ export class TodosService {
         todo.title = title;
         return this.todosRepository.save(todo);
     }
+
+    async remove(id: number): Promise<void> {
+        await this.todosRepository.delete(id);
+    }
 }

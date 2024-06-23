@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param } from '@nestjs/common';
 import { TodosService } from './todos.service';
 
 @Controller('todos')
@@ -13,5 +13,10 @@ export class TodosController {
   @Post()
   async create(@Body('title') title: string) {
     return await this.todosService.create(title);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    return await this.todosService.remove(+id);
   }
 }
