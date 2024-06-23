@@ -11,14 +11,14 @@ export default function Layout() {
         <div className="flex h-16 items-center px-4">
           <Link to="/" className="flex items-center font-bold text-xl">
             <CheckboxIcon className="h-6 w-6 inline mr-2" />
-            Tasks App
+            tasks app.
           </Link>
           <div className="ml-5 flex items-center space-x-4">
             <Link to="/" className="hover:underline">
-              Home
+              home
             </Link>
             <Link to="/about" className="hover:underline">
-              About
+              about
             </Link>
           </div>
         </div>

@@ -17,11 +17,9 @@ export default function Page() {
   const handleAddTask = async (event: FormEvent) => {
     event.preventDefault();
 
-    const title = (event.target as HTMLFormElement).elements.title.value;
-
-    const addedTask = await api.todos.create(title);
-
+    const title = (event.target as any)?.elements?.title?.value as string;
     if (title.trim() !== "") {
+      const addedTask = await api.todos.create(title);
       setTasks([...tasks, addedTask]);
     }
   };
@@ -37,16 +35,16 @@ export default function Page() {
 
   return (
     <>
-      <h1 className="text-5xl font-bold">Your tasks</h1>
-      <p className="mt-4">Make a difference. Today.</p>
+      <h1 className="text-5xl font-bold">your tasks.</h1>
+      <p className="mt-4">make a difference. today.</p>
       <form className="flex items-center mb-4 mt-8" onSubmit={handleAddTask}>
         <Input
           type="text"
-          placeholder="Add a new task"
+          placeholder="add a new task"
           name="title"
           className="flex-1 mr-2 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
         />
-        <Button>Add</Button>
+        <Button>add</Button>
       </form>
       <ul className="space-y-2">
         {tasks.map((task) => (

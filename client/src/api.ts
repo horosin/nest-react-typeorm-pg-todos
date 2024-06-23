@@ -31,4 +31,24 @@ export const api = {
       });
     },
   },
+  auth: {
+    async login(email: string, password: string): Promise<void> {
+      await fetch(`${API_PATH}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+    },
+    async register(email: string, password: string): Promise<void> {
+      await fetch(`${API_PATH}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+    },
+  },
 };

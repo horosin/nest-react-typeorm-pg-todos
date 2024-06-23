@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div className="w-full max-w-screen-sm mx-auto mt-8 px-4">
       <p className="text-xs text-muted-foreground">
-        Made by{" "}
+        made by{" "}
         <a href="https://horosin.com" target="_blank" className="text-black">
           Karol
         </a>{" "}
