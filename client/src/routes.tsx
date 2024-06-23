@@ -1,8 +1,8 @@
-import Page from "./app/page"
+import MainPage from "./app/page";
 
 export const routes = [ 
     {
         path: "/",
-        element: <Page />,
+        element: <MainPage />
     },
 ];
