@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { UserAuthForm } from "../_components/user-auth-form";
+import { useNavigate } from "react-router-dom";
 
 import { api } from "@/api";
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const submitForm = async (event: React.SyntheticEvent) => {
     const email = (event.target as any)?.elements?.email?.value as string;
@@ -17,7 +19,8 @@ export default function Page() {
     setIsLoading(true);
 
     try {
-      await api.auth.login(email, password);
+      await api.auth.register(email, password);
+      navigate("/auth/login");
     } catch (error) {
       console.error(error);
     } finally {
