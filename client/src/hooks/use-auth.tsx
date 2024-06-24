@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./use-local-storage";
 import { Outlet } from "react-router-dom";
 
+import { api } from "@/api";
+
 const AuthContext = createContext<AuthContextType | null>(null); // Provide a default value for createContext
 
 export const AuthProvider = () => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
 
-  const login = async (data: any) => {
-    setUser(data);
+  const login = async (email: string, password: string) => {
+    const loginResult = await api.auth.login(email, password);
+    const accessToken = loginResult?.accessToken;
+    setUser({ email, accessToken });
     navigate("/");
   };
 

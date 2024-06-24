@@ -18,9 +18,7 @@ export default function Page() {
     setIsLoading(true);
 
     try {
-      if (typeof login === "function") {
-        await login({ email });
-      }
+      await login(email, password);
     } catch (error) {
       console.error(error);
     } finally {

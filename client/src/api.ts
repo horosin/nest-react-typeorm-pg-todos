@@ -1,5 +1,9 @@
 const API_PATH = import.meta.env.API_PATH || "http://localhost:3000";
 
+function getJwt() {
+  const token = JSON.parse(localStorage.getItem("user") || "")?.accessToken;
+  return token;
+}
 export interface Todo {
   id: number;
   title: string;
@@ -8,7 +12,11 @@ export interface Todo {
 export const api = {
   todos: {
     async getAll(): Promise<Todo[]> {
-      const response = await fetch(`${API_PATH}/todos`);
+      const response = await fetch(`${API_PATH}/todos`, {
+        headers: {
+          Authorization: `Bearer ${getJwt()}`,
+        },
+      });
       const todos = await response.json();
       return todos;
     },
@@ -18,6 +26,7 @@ export const api = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${getJwt()}`,
         },
         body: JSON.stringify({ title }),
       });
@@ -28,18 +37,23 @@ export const api = {
     async remove(id: number): Promise<void> {
       await fetch(`${API_PATH}/todos/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${getJwt()}`,
+        },
       });
     },
   },
   auth: {
     async login(email: string, password: string): Promise<void> {
-      await fetch(`${API_PATH}/auth/login`, {
+      const response = await fetch(`${API_PATH}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
+      const data = await response.json();
+      return data;
     },
     async register(email: string, password: string): Promise<void> {
       await fetch(`${API_PATH}/auth/register`, {
