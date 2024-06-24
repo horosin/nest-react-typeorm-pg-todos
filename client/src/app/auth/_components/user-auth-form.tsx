@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UpdateIcon } from "@radix-ui/react-icons";
-import { emit } from "process";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   isRegister?: boolean;
