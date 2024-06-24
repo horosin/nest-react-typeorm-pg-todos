@@ -1,4 +1,4 @@
-const API_PATH = import.meta.env.VITE_API_PATH || "http://localhost:3000/api";
+const API_PATH = import.meta.env.VITE_API_PATH || "http://localhost:3000";
 
 function getJwt() {
   const token = JSON.parse(localStorage.getItem("user") || "")?.accessToken;
@@ -7,6 +7,7 @@ function getJwt() {
 export interface Todo {
   id: number;
   title: string;
+  completed?: boolean;
 }
 
 interface AuthResponse {

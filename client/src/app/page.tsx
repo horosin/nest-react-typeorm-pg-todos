@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 
 import { api, Todo } from "@/api";
 
@@ -35,6 +36,28 @@ export default function Page() {
     }
   };
 
+  
+
+  const handleToggleTask = async (id: number) => {
+
+    try {
+      // const updatedTask = await api.todos.update(id, {
+      //   completed: !task.completed,
+      // });
+      // setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
+      // set tasks without calling api
+      const updatedTasks = tasks.map(task => {
+        if (task.id === id) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      });
+      setTasks(updatedTasks);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <h1 className="text-5xl font-bold">your tasks.</h1>
@@ -54,10 +77,21 @@ export default function Page() {
         {tasks.map((task) => (
           <li
             key={task.id}
-            className="flex items-center justify-between rounded-md bg-muted px-3 py-2"
+            className={`flex items-center justify-between rounded-md bg-muted px-3 py-2 ${task.completed ? 'line-through' : ''}`}
           >
             <div className="flex items-center">
-              <span className="text-sm font-medium">{task.title}</span>
+              <Checkbox
+                id={`task-${task.id}`}
+                className="mr-2"
+                checked={task.completed}
+                onCheckedChange={() => handleToggleTask(task.id)}
+              />
+              <label
+                htmlFor={`task-${task.id}`}
+                className={`text-sm font-medium ${task.completed ? 'line-through' : ''}`}
+              >
+                {task.title}
+              </label>
             </div>
             <Button
               variant="ghost"
