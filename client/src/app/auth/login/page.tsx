@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { UserAuthForm } from "../_components/user-auth-form";
 
-import { api } from "@/api";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { login } = useAuth();
 
   const submitForm = async (event: React.SyntheticEvent) => {
     const email = (event.target as any)?.elements?.email?.value as string;
@@ -17,7 +18,9 @@ export default function Page() {
     setIsLoading(true);
 
     try {
-      await api.auth.login(email, password);
+      if (typeof login === "function") {
+        await login({ email });
+      }
     } catch (error) {
       console.error(error);
     } finally {

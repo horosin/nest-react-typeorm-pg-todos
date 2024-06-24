@@ -9,9 +9,9 @@ export default function Page() {
   const [tasks, setTasks] = useState<Todo[]>([]);
 
   useEffect(() => {
-    api.todos.getAll().then((todos) => {
-      setTasks(todos);
-    });
+    // api.todos.getAll().then((todos) => {
+    //   setTasks(todos);
+    // });
   }, []);
 
   const handleAddTask = async (event: FormEvent) => {

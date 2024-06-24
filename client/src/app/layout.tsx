@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-import { CheckboxIcon, TrashIcon } from "@radix-ui/react-icons";
+import { CheckboxIcon, ExitIcon } from "@radix-ui/react-icons";
 
 import { Outlet } from "react-router-dom";
 import Footer from "./_components/Footer";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function Layout() {
+  const { user, logout } = useAuth();
+
   return (
     <div>
       <div className="border-b fixed left-0 top-0 w-full bg-black z-10 text-white">
@@ -20,6 +23,23 @@ export default function Layout() {
             <Link to="/about" className="hover:underline">
               about
             </Link>
+          </div>
+          <div className="ml-auto flex items-center space-x-4">
+            {user ? (
+              <button
+                className="hover:underline"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <ExitIcon className="h-4 w-4 inline mr-2" />
+                logout
+              </button>
+            ) : (
+              <Link to="/auth/login" className="hover:underline">
+                login
+              </Link>
+            )}
           </div>
         </div>
       </div>
