@@ -25,4 +25,4 @@ jobs:
 
 
     - name: SSH and Docker Compose
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP }} "docker-compose -f docker-compose.prod.yml up -d"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_IP }} "docker compose -f docker-compose.prod.yml up -d --build"
