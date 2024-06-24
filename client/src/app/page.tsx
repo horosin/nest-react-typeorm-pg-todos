@@ -7,6 +7,7 @@ import { api, Todo } from "@/api";
 
 export default function Page() {
   const [tasks, setTasks] = useState<Todo[]>([]);
+  const [newTask, setNewTask] = useState<string>("");
 
   useEffect(() => {
     api.todos.getAll().then((todos) => {
@@ -42,6 +43,8 @@ export default function Page() {
           type="text"
           placeholder="add a new task"
           name="title"
+          value={newTask}
+          onChange={(event) => setNewTask(event.target.value)}
           className="flex-1 mr-2 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
         />
         <Button>add</Button>
