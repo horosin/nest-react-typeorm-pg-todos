@@ -22,6 +22,7 @@ export default function Page() {
     if (title.trim() !== "") {
       const addedTask = await api.todos.create(title);
       setTasks([...tasks, addedTask]);
+      setNewTask("");
     }
   };
 
