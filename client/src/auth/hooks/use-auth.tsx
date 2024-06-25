@@ -6,7 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { api } from "@/api";
 
-const AuthContext = createContext<AuthContextType | null>(null); // Provide a default value for createContext
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = () => {
   const [user, setUser] = useLocalStorage("user", null);

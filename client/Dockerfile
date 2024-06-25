@@ -1,3 +1,4 @@
+# Build stage
 FROM node:lts-alpine as builder
 
 WORKDIR /app
@@ -12,6 +13,7 @@ ENV VITE_API_PATH /api
 
 RUN npm run build
 
+# Final run stage
 FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html

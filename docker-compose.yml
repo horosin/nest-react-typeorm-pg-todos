@@ -1,5 +1,7 @@
 version: '3.9'
 
+# compose only for database
+
 services:
   db:
     image: postgres:16

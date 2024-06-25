@@ -41,11 +41,6 @@ export default function Page() {
   const handleToggleTask = async (id: number) => {
 
     try {
-      // const updatedTask = await api.todos.update(id, {
-      //   completed: !task.completed,
-      // });
-      // setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
-      // set tasks without calling api
       const updatedTasks = tasks.map(task => {
         if (task.id === id) {
           return { ...task, completed: !task.completed };
