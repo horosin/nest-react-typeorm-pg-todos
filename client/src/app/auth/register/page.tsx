@@ -26,7 +26,7 @@ export default function Page() {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -38,10 +38,7 @@ export default function Page() {
           Enter your details below to create your account.
         </p>
       </div>
-      <UserAuthForm
-        isLoading={isLoading}
-        submitForm={submitForm}
-      />
+      <UserAuthForm isLoading={isLoading} submitForm={submitForm} />
     </div>
   );
 }

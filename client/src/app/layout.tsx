@@ -27,7 +27,9 @@ export default function Layout() {
           <div className="ml-auto flex items-center space-x-4">
             {user ? (
               <>
-                <span className="text-secondary hidden md:inline">{user.email}</span>
+                <span className="text-secondary hidden md:inline">
+                  {user.email}
+                </span>
                 <button
                   className="hover:underline"
                   onClick={() => {

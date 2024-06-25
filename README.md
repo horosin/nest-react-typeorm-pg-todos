@@ -131,6 +131,19 @@ E.g. `app/auth/layout.tsx` is a layout for all pages under `/auth` route.
 
 This is just a convention.
 
+For bigger apps, lazy loading should be used.
+
+## Possible improvements
+
+- Improve error handling in client and server
+- Add more tests
+- Lazy loading of routes
+- Update task in database when task is marked as done
+- Local docker compose file for development
+- Add more features like editing tasks
+- Improve CI
+- Countless others!
+
 ## Author
 
 Built by Karol Horosin

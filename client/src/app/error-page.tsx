@@ -16,7 +16,9 @@ export default function Component() {
         </p>
         <p>
           <i>
-            {isRouteErrorResponse(error) ? error.statusText : "Please try again later."}
+            {isRouteErrorResponse(error)
+              ? error.statusText
+              : "Please try again later."}
           </i>
         </p>
         <Link

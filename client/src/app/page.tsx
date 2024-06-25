@@ -36,12 +36,9 @@ export default function Page() {
     }
   };
 
-  
-
   const handleToggleTask = async (id: number) => {
-
     try {
-      const updatedTasks = tasks.map(task => {
+      const updatedTasks = tasks.map((task) => {
         if (task.id === id) {
           return { ...task, completed: !task.completed };
         }
@@ -72,7 +69,9 @@ export default function Page() {
         {tasks.map((task) => (
           <li
             key={task.id}
-            className={`flex items-center justify-between rounded-md bg-muted px-3 py-2 ${task.completed ? 'line-through' : ''}`}
+            className={`flex items-center justify-between rounded-md bg-muted px-3 py-2 ${
+              task.completed ? "line-through" : ""
+            }`}
           >
             <div className="flex items-center">
               <Checkbox
@@ -83,7 +82,9 @@ export default function Page() {
               />
               <label
                 htmlFor={`task-${task.id}`}
-                className={`text-sm font-medium ${task.completed ? 'line-through' : ''}`}
+                className={`text-sm font-medium ${
+                  task.completed ? "line-through" : ""
+                }`}
               >
                 {task.title}
               </label>
