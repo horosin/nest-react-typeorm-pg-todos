@@ -98,7 +98,7 @@ The app uses shadcn/ui library for the UI components.
 
 I have chosen this library because of it's popularity and "you own the code" approach.
 
-## Testing
+### Testing
 
 I have written a few tests for the backend just as a demonstration.
 
