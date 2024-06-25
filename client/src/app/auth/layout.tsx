@@ -22,7 +22,7 @@ export default function AuthenticationPage() {
             </blockquote>
           </div>
         </div>
-        <div className="lg:p-8">
+        <div className="p-8">
           <Outlet />
         </div>
       </div>
