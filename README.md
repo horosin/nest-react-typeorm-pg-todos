@@ -35,6 +35,11 @@ To start the database, run:
 docker compose up -d
 ```
 
+Then copy the env file and adjust as fit:
+```bash
+cp server/.env.example server/.env
+```
+
 Then, in separate terminals, run the frontend and the backend.
 
 Frontend:
@@ -51,6 +56,7 @@ npm install
 npm run start:dev
 ```
 
+The app will be available at `http://localhost:5173`.
 
 ## Deployment
 
@@ -72,10 +78,17 @@ Real-world deployment pipeline would include also:
 
 So this is a very simplified version of a deployment pipeline.
 
+Nginx is used to host the static version of the frontend as well as a reverse proxy for the whole app.
+
 ## Technology stack
 
 - React
+- Vite
+- TypeScript
 - Nest.js
+- TypeORM
+- PostgreSQL
+- Docker
 
 ## Development notes
 
