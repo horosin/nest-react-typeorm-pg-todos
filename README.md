@@ -123,7 +123,7 @@ E.g.
    - `/` route lives in `app/page.tsx` file.
    - `auth/login` route lives in `app/auth/login/page.tsx` file.
 
-New pages need to also be registered in the `app/routes.ts` file.
+New pages need to also be registered in the `routes.ts` file.
 
 Layouts for pages are stored at the level of a route and apply donwwards.
 
