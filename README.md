@@ -98,6 +98,19 @@ The app uses shadcn/ui library for the UI components.
 
 I have chosen this library because of it's popularity and "you own the code" approach.
 
+## Testing
+
+I have written a few tests for the backend just as a demonstration.
+
+To run the tests, execute the following command:
+
+```bash
+cd server
+npm run test
+```
+
+Real world applicaiton should be covered with tests to much greater extent.
+
 ### Routing
 
 Routing is done using react-router.
