@@ -7,8 +7,8 @@ import AboutPage from "./app/about/page";
 import AuthLayout from "./app/auth/layout";
 import LoginPage from "./app/auth/login/page";
 import RegisterPage from "./app/auth/register/page";
-import { AuthProvider } from "./hooks/use-auth";
-import { ProtectedRoute } from "./components/protected-route";
+import { AuthProvider } from "./auth/hooks/use-auth";
+import { ProtectedRoute } from "./auth/protected-route";
 
 export const routes = [
   {

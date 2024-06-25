@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserAuthForm } from "../_components/user-auth-form";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/auth/hooks/use-auth";
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState<boolean>(false);

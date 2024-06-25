@@ -3,7 +3,7 @@ import { CheckboxIcon, ExitIcon } from "@radix-ui/react-icons";
 
 import { Outlet } from "react-router-dom";
 import Footer from "./_components/Footer";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/auth/hooks/use-auth";
 
 export default function Layout() {
   const { user, logout } = useAuth();
