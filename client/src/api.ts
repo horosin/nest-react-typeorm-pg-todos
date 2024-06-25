@@ -22,6 +22,11 @@ export const api = {
           Authorization: `Bearer ${getJwt()}`,
         },
       });
+
+      if (!response.ok) {
+        throw new Error("An error occurred");
+      }
+
       const todos = await response.json();
       return todos;
     },
@@ -35,17 +40,26 @@ export const api = {
         },
         body: JSON.stringify({ title }),
       });
+
+      if (!response.ok) {
+        throw new Error("An error occurred");
+      }
+
       const createdTodo = await response.json();
       return createdTodo;
     },
 
     async remove(id: number): Promise<void> {
-      await fetch(`${API_PATH}/todos/${id}`, {
+      const response = await fetch(`${API_PATH}/todos/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${getJwt()}`,
         },
       });
+
+      if (!response.ok) {
+        throw new Error("An error occurred");
+      }
     },
   },
   auth: {
@@ -57,6 +71,13 @@ export const api = {
         },
         body: JSON.stringify({ email, password }),
       });
+
+      if (response.status === 401) {
+        throw new Error("Invalid credentials");
+      } else if (!response.ok) {
+        throw new Error("An error occurred");
+      }
+
       const data = await response.json();
       return data;
     },
@@ -68,6 +89,14 @@ export const api = {
         },
         body: JSON.stringify({ email, password }),
       });
+
+      if (response.status === 409) {
+        throw new Error("User already exists");
+      } else if (!response.ok) {
+        console.error(response);
+        throw new Error("An error occurred");
+      }
+
       const data = await response.json();
       return data;
     },

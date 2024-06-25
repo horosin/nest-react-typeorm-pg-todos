@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { BadRequestException, Body, ConflictException, Controller, HttpCode, HttpStatus, Post, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
 
@@ -13,6 +13,9 @@ export class AuthController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
+    if (!email || !password) {
+      throw new BadRequestException('Missing email or password');
+    }
     return this.authService.signIn(email, password);
   }
 
@@ -23,6 +26,10 @@ export class AuthController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    return this.authService.signUp(email, password);
+    try {
+      return this.authService.signUp(email, password);
+    } catch (error) {
+      throw new ConflictException(error.message)
+    } 
   }
 }

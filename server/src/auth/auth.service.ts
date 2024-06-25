@@ -11,8 +11,11 @@ export class AuthService {
 
   async signIn(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
-    const passwordValid = await user.validatePassword(password);
+    if (!user) {
+      throw new UnauthorizedException('User does not exist');
+    }
 
+    const passwordValid = await user.validatePassword(password);
     if (!passwordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }

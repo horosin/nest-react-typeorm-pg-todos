@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./use-local-storage";
 import { Outlet } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 import { api } from "@/api";
 
@@ -10,12 +11,20 @@ const AuthContext = createContext<AuthContextType | null>(null); // Provide a de
 export const AuthProvider = () => {
   const [user, setUser] = useLocalStorage("user", null);
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const login = async (email: string, password: string) => {
-    const loginResult = await api.auth.login(email, password);
-    const accessToken = loginResult?.accessToken;
-    setUser({ email, accessToken });
-    navigate("/");
+    try {
+      const loginResult = await api.auth.login(email, password);
+      const accessToken = loginResult?.accessToken;
+      setUser({ email, accessToken });
+      navigate("/");
+    } catch (error) {
+      console.error(error as Error);
+      toast({
+        title: error instanceof Error ? error.message : "Error occurred",
+      });
+    }
   };
 
   const logout = () => {
