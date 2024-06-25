@@ -10,10 +10,6 @@ export class TodosService {
     private todosRepository: Repository<Todo>,
   ) {}
 
-  async findAll(): Promise<Todo[]> {
-    return this.todosRepository.find();
-  }
-
   findByUserId(userId: number): Promise<Todo[]> {
     return this.todosRepository.find({
       where: { user: { id: userId } },

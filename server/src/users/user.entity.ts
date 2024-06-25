@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique, BeforeInsert, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  Unique,
+  BeforeInsert,
+  OneToMany,
+} from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { Todo } from '../todos/todo.entity';

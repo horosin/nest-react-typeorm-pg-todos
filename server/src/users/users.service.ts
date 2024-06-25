@@ -11,14 +11,6 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.usersRepository.find();
-  }
-
-  async findOne(id: number): Promise<User> {
-    return this.usersRepository.findOne({ where: { id } });
-  }
-
   async findByEmail(email: string): Promise<User> {
     return this.usersRepository.findOne({ where: { email } });
   }
@@ -27,12 +19,4 @@ export class UsersService {
     const user = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(user);
   }
-
-  // async update(user: User): Promise<User> {
-  //   return this.usersRepository.save(user);
-  // }
-
-  // async remove(id: number): Promise<void> {
-  //   await this.usersRepository.delete(id);
-  // }
 }

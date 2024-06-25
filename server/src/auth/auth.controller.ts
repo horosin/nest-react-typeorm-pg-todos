@@ -26,6 +26,9 @@ export class AuthController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
+    if (!email || !password) {
+      throw new BadRequestException('Missing email or password');
+    }
     try {
       return this.authService.signUp(email, password);
     } catch (error) {
