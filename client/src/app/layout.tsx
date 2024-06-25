@@ -26,15 +26,18 @@ export default function Layout() {
           </div>
           <div className="ml-auto flex items-center space-x-4">
             {user ? (
-              <button
-                className="hover:underline"
-                onClick={() => {
-                  logout();
-                }}
-              >
-                <ExitIcon className="h-4 w-4 inline mr-2" />
-                logout
-              </button>
+              <>
+                <span className="text-secondary hidden md:inline">{user.email}</span>
+                <button
+                  className="hover:underline"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  <ExitIcon className="h-4 w-4 inline mr-2" />
+                  logout
+                </button>
+              </>
             ) : (
               <Link to="/auth/login" className="hover:underline">
                 login
