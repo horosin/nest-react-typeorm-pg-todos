@@ -29,10 +29,6 @@ export class AuthController {
     if (!email || !password) {
       throw new BadRequestException('Missing email or password');
     }
-    try {
-      return this.authService.signUp(email, password);
-    } catch (error) {
-      throw new ConflictException(error.message)
-    } 
+    return this.authService.signUp(email, password);
   }
 }

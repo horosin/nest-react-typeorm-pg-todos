@@ -4,14 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { api, Todo } from "@/api";
+import { todoService, Todo } from "@/services/todo.service";
 
 export default function Page() {
   const [tasks, setTasks] = useState<Todo[]>([]);
   const [newTask, setNewTask] = useState<string>("");
 
   useEffect(() => {
-    api.todos.getAll().then((todos) => {
+    todoService.getAll().then((todos) => {
       setTasks(todos);
     });
   }, []);
@@ -21,7 +21,7 @@ export default function Page() {
 
     const title = (event.target as any)?.elements?.title?.value as string;
     if (title.trim() !== "") {
-      const addedTask = await api.todos.create(title);
+      const addedTask = await todoService.create(title);
       setTasks([...tasks, addedTask]);
       setNewTask("");
     }
@@ -29,7 +29,7 @@ export default function Page() {
 
   const handleRemoveTask = async (id: number) => {
     try {
-      await api.todos.remove(id);
+      await todoService.remove(id);
       setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
       console.error(error);

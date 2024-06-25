@@ -4,7 +4,7 @@ import { useLocalStorage } from "./use-local-storage";
 import { Outlet } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 
-import { api } from "@/api";
+import { authService } from "@/services/auth.service";
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -15,7 +15,7 @@ export const AuthProvider = () => {
 
   const login = async (email: string, password: string) => {
     try {
-      const loginResult = await api.auth.login(email, password);
+      const loginResult = await authService.login(email, password);
       const accessToken = loginResult?.accessToken;
       setUser({ email, accessToken });
       navigate("/");
