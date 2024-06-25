@@ -7,11 +7,13 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    restart: always
 
   client:
     build:
       context: client
       dockerfile: Dockerfile
+    restart: always
 
   server:
     build:
@@ -25,6 +27,7 @@ services:
       DB_NAME: postgres
     depends_on:
       - db
+    restart: always
 
   nginx:
     image: nginx:latest
@@ -35,6 +38,7 @@ services:
     depends_on:
       - client
       - server
+    restart: always
 
 volumes:
   postgres_data:
