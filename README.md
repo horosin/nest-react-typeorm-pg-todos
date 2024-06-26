@@ -137,6 +137,7 @@ For bigger apps, lazy loading should be used.
 
 ## Possible improvements
 
+- Add migrations!
 - Improve error handling in client and server
 - Add more tests
 - Lazy loading of routes
