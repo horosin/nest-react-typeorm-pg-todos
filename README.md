@@ -1,10 +1,12 @@
 # Tasks application
 
-A simple tasks application that allows you to add, remove and mark tasks as done.
+A simple tasks application that allows you to add, remove and marks tasks as done.
 
 Developed as an excercise.
 
 Demo available here: https://tasks.slidesgenerator.com/
+
+(The IP of the demo server must have gotten onto some valuable IP list and it's getting attacked with many requests, sorry if it goes down.)
 
 <p align="center">
     <img src="docs/tasks-screenshot.png" alt="Screenshot of the application">
