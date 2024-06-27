@@ -138,6 +138,7 @@ For bigger apps, lazy loading should be used.
 ## Possible improvements
 
 - Improve error handling in client and server
+- Add refresh tokens, handle token expiry
 - Add more tests
 - Lazy loading of routes
 - Update task in database when task is marked as done
