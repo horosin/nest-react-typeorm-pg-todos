@@ -1,11 +1,12 @@
 name: SSH and Docker Compose
 
 on:
-  push:
-    branches:
-      - main  # or your default branch
-  schedule:
-    - cron: '*/10 * * * *'
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main  # or your default branch
+  # schedule:
+  #   - cron: '*/10 * * * *'
 
 jobs:
   deploy:
